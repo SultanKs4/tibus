@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('akun/{id?}', 'AkunController@get');
+
+Route::post('akun/check', 'AkunController@login');
+
+Route::post('akun', 'AkunController@create');
+
+Route::put('akun', 'AkunController@update');
+
+Route::delete('akun', 'AkunController@delete');
