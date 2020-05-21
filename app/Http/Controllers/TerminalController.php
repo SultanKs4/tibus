@@ -8,8 +8,9 @@ use App\Terminal;
 
 class TerminalController extends Controller
 {
-    public function get($id = null)
+    public function get(Request $request)
     {
+        $id = $request->id;
         if ($id == null) {
             $data = Terminal::all();
         } else {

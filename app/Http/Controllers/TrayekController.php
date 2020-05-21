@@ -8,8 +8,12 @@ use App\Trayek;
 
 class TrayekController extends Controller
 {
-    public function get($id = null, $asal = null, $tujuan = null, $tanggal = null)
+    public function get(Request $request)
     {
+        $id = $request->id;
+        $asal = $request->asal;
+        $tujuan = $request->tujuan;
+        $tanggal = $request->tanggal;
         $data = Trayek::select('po_trayek.id', 'po.nama AS po', 't1.nama as dari', 't2.nama as tujuan', 'po_trayek.jam_berangkat', 'po_trayek.jam_tiba', 'po_trayek.tanggal_berangkat', 'po_trayek.tanggal_tiba', 'po_trayek.harga', 'po_trayek.sisa_kursi')
             ->join('po', 'po_trayek.id_po', '=', 'po.id')
             ->join('terminal as t1', 'po_trayek.dari', '=', 't1.id')

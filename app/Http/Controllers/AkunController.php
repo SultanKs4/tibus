@@ -7,8 +7,9 @@ use App\Akun;
 
 class AkunController extends Controller
 {
-    public function get($id = null)
+    public function get(Request $request)
     {
+        $id = $request->id;
         $data = Akun::select('akun.id', 'akun.email', 'akun.nama_depan', 'akun.nama_belakang', 'akun.telpon', 'level.name')
             ->join('level', 'akun.id_level', '=', 'level.id')
             ->when($id, function ($query, $id) {
