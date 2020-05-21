@@ -8,8 +8,9 @@ use App\Payment;
 
 class PaymentController extends Controller
 {
-    public function get($id = null)
+    public function get(Request $request)
     {
+        $id = $request->id;
         $data = Payment::select('payment.id', 'akun.email as akun', 'payment.total', 'payment_method.name as method', 'payment.bukti_bayar', 'payment_status.name as status')
             ->join('akun', 'payment.id_akun', '=', 'akun.id')
             ->join('payment_method', 'payment.metode_bayar', '=', 'payment_method.id')

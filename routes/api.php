@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('akun/{id?}', 'AkunController@get');
+Route::get('akun', 'AkunController@get');
 
 Route::post('akun/check', 'AkunController@login');
 
@@ -28,7 +28,7 @@ Route::put('akun', 'AkunController@update');
 
 Route::delete('akun', 'AkunController@delete');
 
-Route::get('level/{id?}', 'LevelController@get');
+Route::get('level', 'LevelController@get');
 
 Route::post('level', 'LevelController@create');
 
@@ -36,7 +36,7 @@ Route::put('level', 'LevelController@update');
 
 Route::delete('level', 'LevelController@delete');
 
-Route::get('method/{id?}', 'MethodController@get');
+Route::get('method', 'MethodController@get');
 
 Route::post('method', 'MethodController@create');
 
@@ -44,7 +44,7 @@ Route::put('method', 'MethodController@update');
 
 Route::delete('method', 'MethodController@delete');
 
-Route::get('payment/{id?}', 'PaymentController@get');
+Route::get('payment', 'PaymentController@get');
 
 Route::post('payment', 'PaymentController@create');
 
@@ -52,7 +52,7 @@ Route::put('payment', 'PaymentController@update');
 
 Route::delete('payment', 'PaymentController@delete');
 
-Route::get('po/{id?}', 'PoController@get');
+Route::get('po', 'PoController@get');
 
 Route::post('po', 'PoController@create');
 
@@ -60,7 +60,7 @@ Route::put('po', 'PoController@update');
 
 Route::delete('po', 'PoController@delete');
 
-Route::get('status/{id?}', 'StatusController@get');
+Route::get('status', 'StatusController@get');
 
 Route::post('status', 'StatusController@create');
 
@@ -68,7 +68,7 @@ Route::put('status', 'StatusController@update');
 
 Route::delete('status', 'StatusController@delete');
 
-Route::get('terminal/{id?}', 'TerminalController@get');
+Route::get('terminal', 'TerminalController@get');
 
 Route::post('terminal', 'TerminalController@create');
 
@@ -76,12 +76,24 @@ Route::put('terminal', 'TerminalController@update');
 
 Route::delete('terminal', 'TerminalController@delete');
 
-Route::get('trayek/{id?}', 'TrayekController@get');
+Route::get('trayek', 'TrayekController@get');
 
-Route::get('trayek/search/{asal}/{tujuan}/{tanggal}', 'TrayekController@get');
+Route::get('trayek/search', 'TrayekController@get');
 
 Route::post('trayek', 'TrayekController@create');
 
 Route::put('trayek', 'TrayekController@update');
 
 Route::delete('trayek', 'TrayekController@delete');
+
+Route::get('tiket', 'TiketController@get');
+
+Route::get('tiket/booked', 'TiketController@getBooked');
+
+Route::post('tiket', 'TiketController@create');
+
+Route::post('tiket/trans', 'TiketController@trans');
+
+Route::put('tiket', 'TiketController@update');
+
+Route::delete('tiket', 'TiketController@delete');
