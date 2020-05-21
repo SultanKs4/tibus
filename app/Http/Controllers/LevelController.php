@@ -28,10 +28,10 @@ class LevelController extends Controller
 
     public function create(Request $request)
     {
-        $akun = new Level();
-        $akun->name = $request->name;
+        $data = new Level();
+        $data->name = $request->name;
 
-        if ($akun->save()) {
+        if ($data->save()) {
             $res['status'] = true;
             $res['message'] = "Data level ditambahkan";
             return response($res);
@@ -69,11 +69,11 @@ class LevelController extends Controller
 
             if ($data->delete()) {
                 $res['status'] = true;
-                $res['message'] = "akun deleted";
+                $res['message'] = "level deleted";
                 return response($res);
             } else {
                 $res['status'] = false;
-                $res['message'] = "akun fail to delete";
+                $res['message'] = "level fail to delete";
                 return response($res);
             }
         }

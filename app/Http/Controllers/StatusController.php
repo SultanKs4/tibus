@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Method;
+use App\Status;
 
-class MethodController extends Controller
+class StatusController extends Controller
 {
     public function get($id = null)
     {
         if ($id == null) {
-            $data = Method::all();
+            $data = Status::all();
         } else {
-            $data = Method::where('id', $id)->get();
+            $data = Status::where('id', $id)->get();
         }
 
         if (count($data) > 0) {
@@ -28,36 +28,32 @@ class MethodController extends Controller
 
     public function create(Request $request)
     {
-        $data = new Method();
+        $data = new Status();
         $data->name = $request->name;
-        $data->no = $request->no;
-        $data->an = $request->an;
 
         if ($data->save()) {
             $res['status'] = true;
-            $res['message'] = "Data payment method ditambahkan";
+            $res['message'] = "Data Payment Status ditambahkan";
             return response($res);
         } else {
             $res['status'] = false;
-            $res['message'] = "gagal membuat data payment method";
+            $res['message'] = "gagal membuat data Payment Status";
             return response($res);
         }
     }
 
     public function update(Request $request)
     {
-        $data = Method::find($request->id);
+        $data = Status::find($request->id);
         $data->name = $request->name;
-        $data->no = $request->no;
-        $data->an = $request->an;
 
         if ($data->save()) {
             $res['status'] = true;
-            $res['message'] = "Data payment method diubah";
+            $res['message'] = "Data Payment Status diubah";
             return response($res);
         } else {
             $res['status'] = false;
-            $res['message'] = "gagal mengubah data payment method";
+            $res['message'] = "gagal mengubah data Payment Status";
             return response($res);
         }
     }
@@ -69,15 +65,15 @@ class MethodController extends Controller
             $res['message'] = "id not provided!";
             return response($res);
         } else {
-            $data = Method::where('id', $request->id);
+            $data = Status::where('id', $request->id);
 
             if ($data->delete()) {
                 $res['status'] = true;
-                $res['message'] = "payment method deleted";
+                $res['message'] = "Payment Status deleted";
                 return response($res);
             } else {
                 $res['status'] = false;
-                $res['message'] = "payment method fail to delete";
+                $res['message'] = "Payment Status fail to delete";
                 return response($res);
             }
         }

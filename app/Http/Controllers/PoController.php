@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Method;
+use App\Po;
 
-class MethodController extends Controller
+class PoController extends Controller
 {
     public function get($id = null)
     {
         if ($id == null) {
-            $data = Method::all();
+            $data = Po::all();
         } else {
-            $data = Method::where('id', $id)->get();
+            $data = Po::where('id', $id)->get();
         }
 
         if (count($data) > 0) {
@@ -28,36 +28,32 @@ class MethodController extends Controller
 
     public function create(Request $request)
     {
-        $data = new Method();
-        $data->name = $request->name;
-        $data->no = $request->no;
-        $data->an = $request->an;
+        $data = new Po();
+        $data->nama = $request->nama;
 
         if ($data->save()) {
             $res['status'] = true;
-            $res['message'] = "Data payment method ditambahkan";
+            $res['message'] = "Data PO ditambahkan";
             return response($res);
         } else {
             $res['status'] = false;
-            $res['message'] = "gagal membuat data payment method";
+            $res['message'] = "gagal membuat data PO";
             return response($res);
         }
     }
 
     public function update(Request $request)
     {
-        $data = Method::find($request->id);
-        $data->name = $request->name;
-        $data->no = $request->no;
-        $data->an = $request->an;
+        $data = Po::find($request->id);
+        $data->nama = $request->nama;
 
         if ($data->save()) {
             $res['status'] = true;
-            $res['message'] = "Data payment method diubah";
+            $res['message'] = "Data PO diubah";
             return response($res);
         } else {
             $res['status'] = false;
-            $res['message'] = "gagal mengubah data payment method";
+            $res['message'] = "gagal mengubah data PO";
             return response($res);
         }
     }
@@ -69,15 +65,15 @@ class MethodController extends Controller
             $res['message'] = "id not provided!";
             return response($res);
         } else {
-            $data = Method::where('id', $request->id);
+            $data = Po::where('id', $request->id);
 
             if ($data->delete()) {
                 $res['status'] = true;
-                $res['message'] = "payment method deleted";
+                $res['message'] = "PO deleted";
                 return response($res);
             } else {
                 $res['status'] = false;
-                $res['message'] = "payment method fail to delete";
+                $res['message'] = "PO fail to delete";
                 return response($res);
             }
         }
